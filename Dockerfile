@@ -1,5 +1,5 @@
 # Use the latest Ubuntu image as the base
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Set a maintainer label
 LABEL maintainer="your-email@example.com"
