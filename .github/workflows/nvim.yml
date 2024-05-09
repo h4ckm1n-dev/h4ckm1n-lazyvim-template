@@ -1,0 +1,47 @@
+name: Neovim Configuration Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  neovim-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Neovim
+        uses: docker://ghcr.io/neovim/neovim:latest
+
+      - name: Install dependencies
+        run: apt-get update && apt-get install -y luarocks
+        # Install LuaRocks to manage Lua dependencies
+
+      - name: Install LuaCheck
+        run: luarocks install luacheck
+
+      - name: Copy repository to Neovim config directory
+        run: |
+          mkdir -p $HOME/.config/nvim
+          cp -a ${GITHUB_WORKSPACE}/. $HOME/.config/nvim/
+
+      - name: Install LazyVim
+        run: |
+          curl -s https://raw.githubusercontent.com/LazyVim/LazyVim/main/utils/installer/install.sh | bash
+
+      - name: Run LazyVim setup and plugin installation
+        run: |
+          nvim --headless -c 'autocmd User LazyVimDone quitall' -c 'LazyUpdate' -c 'qa'
+
+      - name: Lint Lua files
+        run: luacheck $HOME/.config/nvim/**/*.lua --no-color
+
+      - name: Test Neovim Configuration
+        run: |
+          nvim --headless -c "checkhealth" -c "qa"
