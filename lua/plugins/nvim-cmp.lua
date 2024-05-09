@@ -75,6 +75,7 @@ return {
             luasnip = "[LuaSnip]",
             copilot = "[Copitlot]",
             path = "[Path]",
+            friendly = "[Friendly]",
           },
         }),
       },
