@@ -4,6 +4,10 @@
 
 local wk = require("which-key")
 
+wk.setup({
+  -- Configuration options
+})
+
 local mappings = {
   h = {
     name = "Ollama", -- This sets a label for all h-prefixed keybindings
@@ -44,3 +48,53 @@ local lsp_mappings = {
 
 -- Register the LSP keybindings
 wk.register(lsp_mappings, { prefix = "<leader>" })
+
+local trouble = require("trouble")
+
+local troubleMappings = {
+  x = {
+    name = "diagnostic/quickfix", -- Label for Trouble keybindings
+    o = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
+    w = {
+      function()
+        trouble.toggle("workspace_diagnostics")
+      end,
+      "Workspace Diagnostics",
+    },
+    d = {
+      function()
+        trouble.toggle("document_diagnostics")
+      end,
+      "Document Diagnostics",
+    },
+    q = {
+      function()
+        trouble.toggle("quickfix")
+      end,
+      "Quickfix",
+    },
+    l = {
+      function()
+        trouble.toggle("loclist")
+      end,
+      "Location List",
+    },
+    r = {
+      function()
+        trouble.toggle("lsp_references")
+      end,
+      "LSP References",
+    },
+    m = { "<cmd>TroubleToggle mode<CR>", "Toggle Mode" },
+    s = { "<cmd>TroubleToggle severity<CR>", "Toggle Severity" },
+    x = { "<cmd>TroubleClose<CR>", "Close Trouble" },
+    z = { "<cmd>TroubleRefresh<CR>", "Refresh Trouble" },
+    p = { "<cmd>TroublePreview<CR>", "Preview Diagnostic" },
+    h = { "<cmd>TroubleHover<CR>", "Hover Diagnostic" },
+    j = { "<cmd>TroubleNext<CR>", "Next Diagnostic" },
+    k = { "<cmd>TroublePrevious<CR>", "Previous Diagnostic" },
+  },
+}
+
+-- Register the Trouble keybindings with which-key under the leader key
+wk.register(troubleMappings, { prefix = "<leader>" })
