@@ -51,65 +51,18 @@ wk.register(lsp_mappings, { prefix = "<leader>" })
 
 local trouble = require("trouble")
 
-local troubleMappings = {
-  x = {
-    name = "diagnostic/quickfix", -- Label for Trouble keybindings
-    o = { "<cmd>TroubleToggle<CR>", "Toggle Trouble" },
-    w = {
-      function()
-        trouble.toggle("workspace_diagnostics")
-      end,
-      "Workspace Diagnostics",
-    },
-    d = {
-      function()
-        trouble.toggle("document_diagnostics")
-      end,
-      "Document Diagnostics",
-    },
-    q = {
-      function()
-        trouble.toggle("quickfix")
-      end,
-      "Quickfix",
-    },
-    l = {
-      function()
-        trouble.toggle("loclist")
-      end,
-      "Location List",
-    },
-    r = {
-      function()
-        trouble.toggle("lsp_references")
-      end,
-      "LSP References",
-    },
-    m = { "<cmd>TroubleToggle mode<CR>", "Toggle Mode" },
-    s = { "<cmd>TroubleToggle severity<CR>", "Toggle Severity" },
-    x = { "<cmd>TroubleClose<CR>", "Close Trouble" },
-    z = { "<cmd>TroubleRefresh<CR>", "Refresh Trouble" },
-    p = { "<cmd>TroublePreview<CR>", "Preview Diagnostic" },
-    h = { "<cmd>TroubleHover<CR>", "Hover Diagnostic" },
-    j = { "<cmd>TroubleNext<CR>", "Next Diagnostic" },
-    k = { "<cmd>TroublePrevious<CR>", "Previous Diagnostic" },
-  },
-}
-
--- Register the Trouble keybindings with which-key under the leader key
-wk.register(troubleMappings, { prefix = "<leader>" })
-
--- Helm keybindings
 local helm_mappings = {
-	k = {
-		name = "Kubernetes", -- This sets a label for all helm-related keybindings
-		c = { "<cmd>HelmDeployFromBuffer<CR>", "Helm Deploy Buffer to Context" },
-    r = { "<cmd>RemoveDeployment<CR>", "Helm Remove Deployment From Buffer" },
-		d = { "<cmd>HelmDryRun<CR>", "helm DryRun Buffer" },
-    a = { "<cmd>KubectlApplyFromBuffer<CR>", "kubectl apply from buffer" },
-    k = { "<cmd>OpenK9s<CR>", "View Cluster In K9s" },
-    K = { "<cmd>OpenK9sSplit<CR>", "Split View K9s" }, 
-	},
+    k = {
+      name = "Kubernetes",
+      c = { "<cmd>HelmDeployFromBuffer<CR>", "Helm Deploy Buffer to Context" },
+        r = { "<cmd>RemoveDeployment<CR>", "Helm Remove Deployment From Buffer" },
+        d = { "<cmd>HelmDryRun<CR>", "Helm DryRun Buffer" },
+        a = { "<cmd>KubectlApplyFromBuffer<CR>", "Kubectl Apply From Buffer" },
+        u = { "<cmd>HelmDependencyUpdateFromBuffer<CR>", "Helm Dependency Update" },
+        b = { "<cmd>HelmDependencyBuildFromBuffer<CR>", "Helm Dependency Build" },
+        K = { "<cmd>OpenK9sSplit<CR>", "Split View K9s" },
+        k = { "<cmd>OpenK9s<CR>", "Open K9s" },
+    },
 }
 
 -- Require the which-key plugin

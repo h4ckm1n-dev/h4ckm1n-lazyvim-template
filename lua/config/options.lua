@@ -4,7 +4,7 @@
 -- Automatically configure the Lua environment to be aware of LuaRocks-installed modules
 
 local function configure_luarocks()
-  local luarocks_path = vim.fn.trim(vim.fn.system("luarocks path --lua-version=5.1"))
+  local luarocks_path = vim.fn.trim(vim.fn.system("luarocks path --lua-version=5.4"))
   for match in (luarocks_path .. ""):gmatch("[^\r\n]+") do
     if match:find("LUA_PATH", 1, true) then
       package.path = match:sub(11) .. ";" .. package.path

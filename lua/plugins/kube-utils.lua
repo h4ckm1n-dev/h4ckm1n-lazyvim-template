@@ -1,7 +1,7 @@
 return {
     {
         "h4ckm1n-dev/kube-utils-nvim",
-        branch = "dev",
+        branch = "main",
         event = "BufReadPost",
         config = function()
             require("helm_utils").setup()

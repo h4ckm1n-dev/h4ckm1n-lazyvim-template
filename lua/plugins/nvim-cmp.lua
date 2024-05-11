@@ -7,9 +7,9 @@ return {
     {
       "L3MON4D3/LuaSnip",
       build = "make install_jsregexp",
+      requires = { "rafamadriz/friendly-snippets" },
     },
     "saadparwaiz1/cmp_luasnip",
-    "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim",
   },
   config = function()
@@ -63,7 +63,6 @@ return {
         { name = "buffer" },
         { name = "path" },
         { name = "copilot" },
-        { name = "friendly" },
       }),
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
@@ -75,7 +74,6 @@ return {
             luasnip = "[LuaSnip]",
             copilot = "[Copitlot]",
             path = "[Path]",
-            friendly = "[Friendly]",
           },
         }),
       },
