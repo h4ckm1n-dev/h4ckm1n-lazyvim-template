@@ -99,3 +99,4 @@ require("lspconfig").yamlls.setup({
     },
   },
 })
+

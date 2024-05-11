@@ -9,7 +9,7 @@ wk.setup({
 })
 
 local mappings = {
-  h = {
+  o = {
     name = "Ollama", -- This sets a label for all h-prefixed keybindings
     c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
     e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction" },
@@ -98,3 +98,22 @@ local troubleMappings = {
 
 -- Register the Trouble keybindings with which-key under the leader key
 wk.register(troubleMappings, { prefix = "<leader>" })
+
+-- Helm keybindings
+local helm_mappings = {
+	k = {
+		name = "Kubernetes", -- This sets a label for all helm-related keybindings
+		c = { "<cmd>HelmDeployFromBuffer<CR>", "Helm Deploy Buffer to Context" },
+    r = { "<cmd>RemoveDeployment<CR>", "Helm Remove Deployment From Buffer" },
+		d = { "<cmd>HelmDryRun<CR>", "helm DryRun Buffer" },
+    a = { "<cmd>KubectlApplyFromBuffer<CR>", "kubectl apply from buffer" },
+    k = { "<cmd>OpenK9s<CR>", "View Cluster In K9s" },
+    K = { "<cmd>OpenK9sSplit<CR>", "Split View K9s" }, 
+	},
+}
+
+-- Require the which-key plugin
+local wk = require("which-key")
+
+-- Register the Helm keybindings with a specific prefix
+wk.register(helm_mappings, { prefix = "<leader>" })
