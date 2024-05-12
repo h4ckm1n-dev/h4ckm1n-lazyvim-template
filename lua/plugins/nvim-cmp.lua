@@ -7,10 +7,10 @@ return {
     {
       "L3MON4D3/LuaSnip",
       build = "make install_jsregexp",
-      requires = { "rafamadriz/friendly-snippets" },
     },
     "saadparwaiz1/cmp_luasnip",
     "onsails/lspkind.nvim",
+    "rafamadriz/friendly-snippets",
   },
   config = function()
     local cmp = require("cmp")
