@@ -99,3 +99,34 @@ require("lspconfig").yamlls.setup({
     },
   },
 })
+
+-- Ensure Neotree is installed and set up correctly
+require('neo-tree').setup {}
+
+-- Function to toggle between Neotree and the last used buffer
+function ToggleNeoTree()
+  local current_win = vim.api.nvim_get_current_win()
+  local neotree_win = nil
+
+  -- Find the Neotree window
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+    if bufname:match("neo%-tree filesystem") then
+      neotree_win = win
+      break
+    end
+  end
+
+  if neotree_win then
+    if current_win == neotree_win then
+      -- If currently in Neotree, switch to the previous buffer
+      vim.cmd("wincmd p")
+    else
+      -- Otherwise, switch to the Neotree window
+      vim.api.nvim_set_current_win(neotree_win)
+    end
+  else
+    -- If Neotree is not open, open it
+    vim.cmd("Neotree toggle")
+  end
+end
