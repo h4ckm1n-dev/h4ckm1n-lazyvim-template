@@ -15,6 +15,3 @@ local function configure_luarocks()
 end
 
 configure_luarocks()
-
-vim.g.python3_host_prog = "/home/h4ckm1n/.Work/bin/python"
-vim.env.PATH = "/home/h4ckm1n/.Work/bin:" .. vim.env.PATH

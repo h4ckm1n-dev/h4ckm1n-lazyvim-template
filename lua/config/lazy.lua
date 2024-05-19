@@ -47,27 +47,27 @@ require("lazy").setup({
 
 -- Neovim Configuration
 vim.o.clipboard = "unnamedplus"
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd([[colorscheme catppuccin-mocha]])
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "lazy" })
 
-require("lspconfig").yamlls.setup({
+-- Your existing LSP setup for yamlls in init.lua
+require('lspconfig').yamlls.setup {
   settings = {
     yaml = {
-      -- Enable and configure schema store
       schemaStore = {
         enable = true,
         url = "https://www.schemastore.org/api/json/catalog.json",
       },
-      -- Specify YAML schemas
       schemas = {
         -- ArgoCD ApplicationSet CRD
-        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/applicationset-crd.yaml"] = "",
+        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/applicationset-crd.yaml"] =
+        "/home/h4ckm1n/Documents/K8s/apps/templates/*.yaml",
         -- ArgoCD Application CRD
-        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/application-crd.yaml"] = "",
+        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/application-crd.yaml"] =
+        "/home/h4ckm1n/Documents/K8s/apps/templates/*.yaml",
         -- Kubernetes strict schemas
         ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.29.3-standalone-strict/all.json"] = "",
       },
-      -- Enable validation, auto-completion, hover tooltips, and formatting
       validate = true,
       completion = true,
       hover = true,
@@ -78,14 +78,12 @@ require("lspconfig").yamlls.setup({
         proseWrap = "preserve",
         singleQuote = true,
       },
-      -- Custom tags for YAML files
       customTags = {
         "!Ref",
         "!Sub sequence",
         "!Sub mapping",
         "!GetAtt",
       },
-      -- Additional settings
       disableAdditionalProperties = false,
       maxItemsComputed = 5000,
       trace = {
@@ -98,6 +96,11 @@ require("lspconfig").yamlls.setup({
       },
     },
   },
+}
+
+-- Helm LSP setup
+require('lspconfig').helm_ls.setup({
+  filetypes = { 'helm' },
 })
 
 -- Ensure Neotree is installed and set up correctly
