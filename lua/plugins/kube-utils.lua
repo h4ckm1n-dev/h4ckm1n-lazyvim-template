@@ -1,9 +1,10 @@
 return {
     {
         "h4ckm1n-dev/kube-utils-nvim",
-        branch = "developement",
+        -- dir = "/local/path/to/plugin",
+        branch = "main", -- comment to use local folder
         config = function()
-            require("helm_utils").setup()
+            require("init").setup()
         end,
     },
 }

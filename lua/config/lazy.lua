@@ -47,7 +47,7 @@ require("lazy").setup({
 
 -- Neovim Configuration
 vim.o.clipboard = "unnamedplus"
-vim.cmd([[colorscheme catppuccin-mocha]])
+vim.cmd([[colorscheme catppuccin]])
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "lazy" })
 
 require("lspconfig").yamlls.setup({
@@ -61,9 +61,9 @@ require("lspconfig").yamlls.setup({
       -- Specify YAML schemas
       schemas = {
         -- ArgoCD ApplicationSet CRD
-        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/applicationset-crd.yaml"] = "/home/h4ckm1n/Documents/argo-cd/apps/templates/*.yaml",
+        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/applicationset-crd.yaml"] = "",
         -- ArgoCD Application CRD
-        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/application-crd.yaml"] = "/home/h4ckm1n/Documents/argo-cd/apps/*.yaml",
+        ["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/application-crd.yaml"] = "",
         -- Kubernetes strict schemas
         ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.29.3-standalone-strict/all.json"] = "",
       },
@@ -99,4 +99,3 @@ require("lspconfig").yamlls.setup({
     },
   },
 })
-
